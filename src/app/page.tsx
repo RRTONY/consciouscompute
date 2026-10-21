@@ -71,7 +71,7 @@ function Note({ children }: { children: React.ReactNode }) {
 export default function Home() {
   return (
     <main className="mx-auto max-w-184 pt-6 pb-16 pl-[max(16px,env(safe-area-inset-left))] pr-[max(16px,env(safe-area-inset-right))] sm:pt-8 sm:pb-20 sm:pl-[max(24px,env(safe-area-inset-left))] sm:pr-[max(24px,env(safe-area-inset-right))]">
-      <aside role="note" aria-label="Temporary placement" className="mb-6 border-4 border-rust bg-white px-4 py-3 sm:px-5 sm:py-4 text-[0.9rem] sm:mb-8">
+      <aside role="note" aria-label="Temporary placement" className="mb-6 border-4 border-notice-border bg-white px-4 py-3 sm:px-5 sm:py-4 text-[0.9rem] sm:mb-8">
         <p className="mb-1 font-serif text-[1.3rem] font-bold text-rust sm:text-[1.5rem]">Temporary placement.</p>
         This page presents an early working draft of Conscious Compute for discussion and critique. The framework, scoring, and examples are provisional. No projects have yet been independently assessed under it.
       </aside>
