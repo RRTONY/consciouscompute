@@ -13,7 +13,7 @@
 // esm.sh inside the sandboxed iframe, so it adds no dependency. The URI is versioned because
 // ChatGPT caches a card's HTML by URI.
 export const PENDING_CHANGES_UI_URI =
-  "ui://consciouscompute-admin/pending-changes-v1.html";
+  "ui://consciouscompute-admin/pending-changes-v2.html";
 
 export const PENDING_CHANGES_HTML = `<!doctype html>
 <html>
@@ -151,8 +151,18 @@ export const PENDING_CHANGES_HTML = `<!doctype html>
 <body>
   <div id="root" class="card" aria-live="polite"><span class="muted">Loading…</span></div>
   <script type="module">
-    import { App, applyDocumentTheme, applyHostStyleVariables, applyHostFonts }
-      from "https://esm.sh/@modelcontextprotocol/ext-apps@1.7.5";
+    // Exact versions of the runtime's own dependencies (?deps=): left open, esm.sh picked zod 4.x,
+    // whose esm.sh build lacks z.custom, so the SDK crashed on import and ChatGPT showed
+    // "Couldn't display" (seen 2026-10-17 in tonyg-site, 2026-10-22 here).
+    const RUNTIME = "https://esm.sh/@modelcontextprotocol/ext-apps@1.7.5?deps=@modelcontextprotocol/sdk@1.30.0,zod@3.25.76";
+    let runtime;
+    try {
+      runtime = await import(RUNTIME);
+    } catch (e) {
+      document.getElementById("root").innerHTML = '<p class="muted">The review card could not load just now. Everything it would show is in the chat reply; ask there to preview, publish or discard.</p>';
+      throw e;
+    }
+    const { App, applyDocumentTheme, applyHostStyleVariables, applyHostFonts } = runtime;
 
     const MAX_ITEMS = 6;
     const MAX_BEFORE_AFTER = 4;
