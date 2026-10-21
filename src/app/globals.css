@@ -8,6 +8,7 @@
   --rule: #bdb6d8;
   --wash: #f1eefa;
   --rust: #9a3412;
+  --notice-border: #bf642f;
 
   /* --font-fraunces / --font-plex-mono come from next/font variable classes on <html>. */
 }
@@ -20,6 +21,7 @@
   --color-rule: var(--rule);
   --color-wash: var(--wash);
   --color-rust: var(--rust);
+  --color-notice-border: var(--notice-border);
   --font-serif: var(--font-fraunces), Georgia, serif;
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 }
