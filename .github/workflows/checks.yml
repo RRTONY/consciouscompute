@@ -1,0 +1,28 @@
+# Type check, lint and build on every pull request. The MCP editor's publish_changes refuses to
+# merge a change until these pass (alongside Vercel's preview build).
+name: checks
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Type check
+        run: npx tsc --noEmit
+      - name: Lint
+        run: npm run lint
+      - name: Build
+        run: npm run build

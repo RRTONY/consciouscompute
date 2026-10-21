@@ -60,7 +60,8 @@ Follow the patterns already in the codebase before inventing new ones. Specific 
 
 **Components and pages**
 - Server components by default. `'use client'` only when the component needs browser APIs or React
-  state/effects. The site today is fully static (`○ Static` in the build route table); keep it that way.
+  state/effects. The paper page is fully static (`○ Static` in the build route table); keep it that way.
+  Only the editor's sign-in and MCP routes (see **Editing Through AI**) run on the server.
 - Long repeated content (tables, use cases, references) lives as typed data in `src/lib/paper.ts` and
   is rendered by small components in the page. Add rows there, not by hand in the JSX.
 - Reuse the existing local components (`DataTable`, `TestBox`, `Note`) before writing one-off markup.
@@ -162,6 +163,9 @@ the Status Report.
 ## 6. Before You Publish
 
 - The site deploys on **Vercel** from `main`. Pushing to `main` is publishing: confirm first.
+- **Through the MCP editor (ChatGPT, Claude):** one request = one change. `start_change`, edit with its
+  `change_id`, `submit_for_review` (with `before_after` for any wording), then `list_pending_changes`
+  to show the review card. Nothing goes live except `publish_changes` for that one reviewed change.
 - Always show the person what is about to go live and get a clear yes.
 - Never publish while the build is failing.
 
@@ -213,6 +217,10 @@ Leave out a line only if it truly doesn't apply.
 | `src/app/globals.css` | Tailwind import, color/font tokens, article typography (`@layer base`) |
 | `src/lib/paper.ts` | Protocol table, use cases, lineage table, references |
 | `public/image.svg` | "The bargain, drawn" figure |
+| `src/components/icons.tsx` | Inline SVG icons |
+| `src/lib/admin/` | The MCP editor: tools, change records, review, GitHub client, sign-in (not editable through MCP) |
+| `src/app/api/mcp/`, `src/app/api/oauth/`, `src/app/oauth/`, `src/app/.well-known/` | MCP endpoint and sign-in (not editable through MCP) |
+| `.github/workflows/checks.yml` | Type check, lint and build on every pull request |
 | `docs/ai/` | Background notes for AI tools |
 
 ## Design System
@@ -231,6 +239,52 @@ Layout: one centered column, `max-w-184` (46rem), 16px side gutter honoring safe
 base font size 16px on phones and 18px from `md:` up, line height 1.7 to 1.75. Section headings (`h2`) carry a 3px ink top rule.
 
 ---
+
+## Editing Through AI (MCP server)
+
+Team members edit the site by connecting ChatGPT, Claude or Claude Code to this site's own MCP server
+at `https://consciouscompute.org/api/mcp`. There is no admin page; the connected app's own AI does
+the work through the server's tools. Ported from ramprate-ui's editor, cut to its core, with **no
+database**: background in [`docs/ai/project_mcp_editor.md`](docs/ai/project_mcp_editor.md).
+
+**How it works**
+- **One request = one change = one GitHub branch (`change/<id>`) + one pull request.** The change
+  record (who asked, what was understood, status, summary, before/after) is JSON inside the pull
+  request description (`src/lib/admin/change-record.ts`). Published = merged, Discarded = closed,
+  read straight from GitHub.
+- **Rules gate:** `get_project_rules` returns this file and a `rulesVersion`; every tool that changes
+  something needs it as `rules_version` and refuses without it (some clients ignore server
+  instructions). Editing this file changes the version once published.
+- **Confirm first:** `start_change` with `needs_confirmation` waits for the person's yes
+  (`confirm_change`, or the card's Yes button) before any edit is allowed.
+- **Publish safety:** `publish_changes` needs the `review_token` from the review (a fingerprint of the
+  change's latest commit), refuses after any later edit, and waits until both the Vercel preview build
+  and the GitHub `checks` job pass. It squash-merges with GitHub's commit guard, then deletes the branch.
+- **Guardrails** (`src/lib/admin/guardrails.ts`): never writable through MCP: `.env*`, `package*.json`,
+  `vercel.json`, `.mcp.json`, `.github/`, `src/lib/admin/`, `src/app/api/`, `src/app/oauth/`,
+  `src/app/.well-known/`. `package.json`, `vercel.json` and workflow files can be read.
+- **Roles:** `read` (look and check), `edit` (prepare changes, discard), `write` (also publish).
+- **Review card:** hosts that support MCP Apps (ChatGPT, Claude) show the review as a card with
+  Preview | Discard | Publish (`src/lib/admin/mcp-ui-widget.ts`, URI versioned: bump it on any change,
+  since ChatGPT caches the card by URI).
+
+**Env vars (Vercel → Project → Settings → Environment Variables; never in code or docs)**
+
+| Var | Purpose |
+| --- | --- |
+| `GITHUB_TOKEN` | Fine-grained token for **RRTONY/consciouscompute only**: Contents + Pull requests read/write, Commit statuses + Checks + Actions read. Not the token in anyone's git remote. |
+| `MCP_ADMIN_USERS` | JSON array, one entry per person: `[{"name":"...","email":"...","role":"read\|edit\|write","token":"<optional, openssl rand -hex 32>"}]`. Email = can sign in; token (32+ chars) = for header-only apps. Remove someone by deleting their entry and redeploying. |
+| `MCP_LOGIN_PASSWORD` | Shared team password for the sign-in page. Changing it signs everyone out. |
+| `MCP_AUTH_SECRET` | Signs sign-in codes and tokens (`openssl rand -hex 32`). |
+| `MCP_PUBLIC_ORIGIN` | `https://consciouscompute.org`. The address the sign-in metadata advertises; must match the URL people add, or ChatGPT/Claude refuse to connect. |
+| `MCP_OAUTH_REDIRECT_HOSTS` | Optional extra hosts allowed to receive sign-in codes (comma separated). |
+
+**Connecting**
+- **ChatGPT:** Settings → Apps & Connectors → Advanced → Developer mode → Create → URL
+  `https://consciouscompute.org/api/mcp`, Authentication **OAuth** → sign in on our page.
+- **Claude.ai / Claude Desktop:** Settings → Connectors → Add custom connector → the same URL → sign in.
+- **Claude Code:** `.mcp.json` in this repo declares the server; run `/mcp` → `consciouscompute-admin`
+  → Authenticate.
 
 ## Knowledge Base (docs/ai/)
 

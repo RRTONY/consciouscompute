@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "consciouscompute-admin": {
+      "type": "http",
+      "url": "https://consciouscompute.org/api/mcp"
+    }
+  }
+}
