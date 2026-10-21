@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #fbfaf6;
+  --ink: #14121c;
+  --mute: #3b3750;
+  --violet: #4b2bd6;
+  --rule: #bdb6d8;
+  --wash: #f1eefa;
+  --rust: #9a3412;
+
+  /* --font-fraunces / --font-plex-mono come from next/font variable classes on <html>. */
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-mute: var(--mute);
+  --color-violet: var(--violet);
+  --color-rule: var(--rule);
+  --color-wash: var(--wash);
+  --color-rust: var(--rust);
+  --font-serif: var(--font-fraunces), Georgia, serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+/* Article typography, mobile first: unprefixed values are for phones, sm:/md: scale up. Element rules stay inside @layer base so Tailwind utilities still win. */
+@layer base {
+  html {
+    @apply text-[16px] [-webkit-text-size-adjust:100%] md:text-[18px];
+  }
+
+  body {
+    @apply bg-paper font-mono leading-[1.7] text-ink sm:leading-[1.75];
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-serif leading-[1.2] font-bold text-balance;
+  }
+
+  h1 {
+    @apply mt-[0.4rem] mb-4 text-[2.1rem] sm:text-[2.75rem] md:text-[3.5rem];
+  }
+
+  h2 {
+    @apply mt-10 mb-3 border-t-3 border-ink pt-4 text-[1.5rem] sm:mt-12 sm:text-[1.75rem] md:text-[2rem];
+  }
+
+  h3 {
+    @apply mt-8 mb-[0.4rem] text-[1.1rem] sm:text-[1.2rem];
+  }
+
+  p {
+    @apply mb-[1.1rem] text-pretty wrap-break-word;
+  }
+
+  a {
+    @apply text-violet underline underline-offset-3;
+  }
+}
