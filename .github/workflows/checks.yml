@@ -9,15 +9,22 @@ on:
 permissions:
   contents: read
 
+# A new push to a change cancels its older run still in progress.
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   checks:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          node-version: 22
+          # Same npm major (11) that writes package-lock.json; npm 10 on Node 22 rejected the
+          # lock file (fdir's picomatch peer range) and failed every change before any check ran.
+          node-version: 24
           cache: npm
       - run: npm ci
       - name: Type check

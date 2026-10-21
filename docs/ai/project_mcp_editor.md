@@ -18,3 +18,7 @@ Built 2026-10-22 on request ("check ramprate-ui and its MCP server, the same thi
 - Review card script parses as valid JavaScript.
 
 **Not yet verified:** against real GitHub and Vercel (needs `GITHUB_TOKEN` and the other env vars in Vercel, and the domain). First live check: start a tiny change from Claude or ChatGPT, confirm the pull request opens with the record, the preview link appears, and discard it. The test scripts are not in the repo yet (they ran with `npx tsx`); adding Vitest to keep them needs a yes (no new dependency without asking).
+
+**Fixed 2026-10-22 after the first real change (PR #1, Tony's orange notice border):**
+- ChatGPT showed "Couldn't display" instead of the review card: the card loaded `ext-apps@1.7.5` from esm.sh with its dependencies unpinned, esm.sh now picks zod 4.x, and the runtime crashed on import (`t.custom is not a function`, reproduced in Chrome). The runtime URL now pins `sdk@1.30.0` and `zod@3.25.76` (same fix as tonyg-site, 2026-10-17), a failed load shows a plain message, and the card URI moved to v2. ramprate-ui's card still has the unpinned import.
+- The GitHub `checks` job failed at `npm ci` on every change: the runner's npm 10 (Node 22) rejected the lock file written by npm 11 (`fdir` wants picomatch ^3||^4, the top-level copy is 2.3.2). The workflow now runs on Node 24 (npm 11). Changes opened before the fix need their branch updated from `main` to pick it up.
