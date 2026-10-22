@@ -78,9 +78,9 @@ export default function Home() {
       <p className="text-[0.8rem] font-semibold tracking-[0.12em] text-violet uppercase">
         ConsciousCompute.org · Working paper · October 13, 2026
       </p>
-      <h1>The cloud has neighbors.</h1>
+      <h1>What If Computing Had a Conscience?</h1>
       <p className="text-[1.05rem] font-medium">
-        Conscious Compute proposes three commitments for computing infrastructure: publish the local costs, share value with affected communities, and independently verify both.
+        As AI reshapes civilization, who decides what progress means, who captures its value, who bears its costs, and who holds the system accountable?
       </p>
       <p className="text-[0.9rem] text-mute">Tony Greenberg · ImpactSoul · Draft for citation and critique</p>
 
