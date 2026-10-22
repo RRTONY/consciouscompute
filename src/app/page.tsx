@@ -78,11 +78,34 @@ export default function Home() {
       <p className="text-[0.8rem] font-semibold tracking-[0.12em] text-violet uppercase">
         ConsciousCompute.org · Working paper · October 13, 2026
       </p>
-      <h1>The cloud has neighbors.</h1>
+      <h1>What If Computing Had a Conscience?</h1>
       <p className="text-[1.05rem] font-medium">
-        Conscious Compute proposes three commitments for computing infrastructure: publish the local costs, share value with affected communities, and independently verify both.
+        As AI reshapes civilization, who decides what progress means, who captures its value, who bears its costs, and who holds the system accountable?
       </p>
       <p className="text-[0.9rem] text-mute">Tony Greenberg · ImpactSoul · Draft for citation and critique</p>
+
+      <section aria-label="From visual cognition to conscious compute" className="my-7 border-y border-rule py-5">
+        <p className="text-[0.75rem] font-semibold tracking-[0.12em] text-violet uppercase">The question began long before today’s AI boom</p>
+        <p className="my-3 font-serif text-[1.3rem] leading-snug sm:text-[1.55rem]">“A humane Singularity is still possible if we recognize the limits and the obstacles and begin to work around them.”</p>
+        <p className="text-[0.85rem] text-mute">From my 2010 <a href="https://tonygreenberg.com/blog/boiling-the-human-summit-harvard-kurzweil">“Boiling the Human” H+ Summit presentation alongside Ray Kurzweil</a>. The warning was about technology outrunning human judgment. Conscious Compute asks how we can see the consequences and govern the exchange.</p>
+        <div className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-3" aria-label="Visual cognition model">
+          <div className="border-l-4 border-violet bg-wash p-3">
+            <p className="text-[0.7rem] font-semibold tracking-wider text-violet uppercase">01 / See</p>
+            <p className="mt-1 font-serif text-[1.05rem]">Make invisible costs visible.</p>
+            <p className="mt-1 text-[0.8rem] text-mute">Published</p>
+          </div>
+          <div className="border-l-4 border-violet bg-wash p-3">
+            <p className="text-[0.7rem] font-semibold tracking-wider text-violet uppercase">02 / Share</p>
+            <p className="mt-1 font-serif text-[1.05rem]">Return value to those affected.</p>
+            <p className="mt-1 text-[0.8rem] text-mute">Shared</p>
+          </div>
+          <div className="border-l-4 border-violet bg-wash p-3">
+            <p className="text-[0.7rem] font-semibold tracking-wider text-violet uppercase">03 / Verify</p>
+            <p className="mt-1 font-serif text-[1.05rem]">Prove promises became outcomes.</p>
+            <p className="mt-1 text-[0.8rem] text-mute">Checked</p>
+          </div>
+        </div>
+      </section>
 
       <figure className="my-6">
         <Image
