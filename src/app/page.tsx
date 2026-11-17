@@ -47,7 +47,7 @@ function DataTable({ head, rows }: { head: string[]; rows: string[][] }) {
 
 function TestBox({ name, children }: { name: string; children: React.ReactNode }) {
   return (
-    <div className="my-4 border-2 border-ink bg-white px-4 py-3 sm:px-5 sm:py-4">
+    <div className="my-4 h-full rounded-xl border-t-4 border-violet bg-white px-4 py-4 shadow-sm sm:px-5 sm:py-5">
       <b className="font-serif text-[1.15rem]">{name}</b> {children}
     </div>
   );
@@ -55,7 +55,7 @@ function TestBox({ name, children }: { name: string; children: React.ReactNode }
 
 function UseCaseCard({ c }: { c: UseCase }) {
   return (
-    <div className="my-5 border border-l-4 border-rule border-l-rust bg-white px-4 py-3 sm:px-5 sm:py-4 sm:border-l-6">
+    <div className="my-5 rounded-xl border border-l-4 border-rule border-l-rust bg-white px-4 py-4 shadow-sm sm:px-5 sm:py-5 sm:border-l-6">
       <p className="mb-1 text-[0.75rem] font-semibold tracking-[0.12em] text-rust uppercase">Illustrative, not a completed project</p>
       <b className="font-serif text-[1.15rem]">{c.title}</b>
       <p className="my-1.5">{c.measure}</p>
@@ -70,36 +70,59 @@ function Note({ children }: { children: React.ReactNode }) {
 
 export default function Home() {
   return (
-    <main className="mx-auto max-w-184 pt-6 pb-16 pl-[max(16px,env(safe-area-inset-left))] pr-[max(16px,env(safe-area-inset-right))] sm:pt-8 sm:pb-20 sm:pl-[max(24px,env(safe-area-inset-left))] sm:pr-[max(24px,env(safe-area-inset-right))]">
-      <aside role="note" aria-label="Temporary placement" className="mb-6 border-4 border-rust bg-white px-4 py-3 sm:px-5 sm:py-4 text-[0.9rem] sm:mb-8">
+    <main className="mx-auto max-w-6xl pt-6 pb-16 font-sans pl-[max(16px,env(safe-area-inset-left))] pr-[max(16px,env(safe-area-inset-right))] sm:pt-8 sm:pb-20 sm:pl-[max(24px,env(safe-area-inset-left))] sm:pr-[max(24px,env(safe-area-inset-right))]">
+      <aside role="note" aria-label="Temporary placement" className="mb-8 rounded-2xl border border-rust bg-white px-4 py-4 text-[0.9rem] shadow-sm sm:mb-10 sm:px-6 sm:py-5">
         <p className="mb-1 font-serif text-[1.3rem] font-bold text-rust sm:text-[1.5rem]">Temporary placement.</p>
         This page presents an early working draft of Conscious Compute for discussion and critique. The framework, scoring, and examples are provisional. No projects have yet been independently assessed under it.
       </aside>
-      <p className="text-[0.8rem] font-semibold tracking-[0.12em] text-violet uppercase">
+      <header className="grid gap-6 md:grid-cols-2 md:items-center md:gap-10">
+        <div className="max-w-xl">
+      <p className="font-mono text-[0.8rem] font-semibold tracking-[0.12em] text-violet uppercase">
         ConsciousCompute.org · Working paper · October 13, 2026
       </p>
       <h1>What If Computing Had a Conscience?</h1>
       <p className="text-[1.05rem] font-medium">
         As AI reshapes civilization, who decides what progress means, who captures its value, who bears its costs, and who holds the system accountable?
       </p>
-      <p className="text-[0.9rem] text-mute">Tony Greenberg · ImpactSoul · Draft for citation and critique</p>
+      <p className="font-mono text-[0.9rem] text-mute">Tony Greenberg · ImpactSoul · Draft for citation and critique</p>
+          <a href="mailto:join@consciouscompute.org?subject=Conscious%20Compute%20pilot%20interest" className="mt-5 inline-flex items-center gap-2 rounded-full bg-violet px-5 py-3 font-semibold text-white no-underline shadow-sm hover:bg-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet">
+            Join the movement <span aria-hidden="true">→</span>
+          </a>
+        </div>
 
-      <section aria-label="From visual cognition to conscious compute" className="my-7 border-y border-rule py-5">
+      
+
+      <figure className="my-6 rounded-3xl border border-rule bg-wash p-3 shadow-sm sm:p-5">
+        <Image
+          src="/image.svg"
+          width={1200}
+          height={820}
+          priority
+          className="block h-auto w-full rounded-2xl"
+          alt="A violet data hall at the center of a ring of eleven neighborhood houses. An orange square on each line marks the cost of connecting. A twelfth house outside the ring has a dashed outline and no line."
+        />
+        <figcaption className="mt-2 text-[0.85rem] text-mute">
+          The bargain, drawn. Eleven neighbors are connected and carry a cost. One is left out. Conscious compute is the discipline of counting all twelve.
+        </figcaption>
+      </figure>
+      </header>
+
+      <section aria-label="From visual cognition to conscious compute" className="my-8 rounded-3xl border border-rule bg-wash p-5 sm:p-7">
         <p className="text-[0.75rem] font-semibold tracking-[0.12em] text-violet uppercase">The question began long before today’s AI boom</p>
         <p className="my-3 font-serif text-[1.3rem] leading-snug sm:text-[1.55rem]">“A humane Singularity is still possible if we recognize the limits and the obstacles and begin to work around them.”</p>
         <p className="text-[0.85rem] text-mute">From my 2010 <a href="https://tonygreenberg.com/blog/boiling-the-human-summit-harvard-kurzweil">“Boiling the Human” H+ Summit presentation alongside Ray Kurzweil</a>. The warning was about technology outrunning human judgment. Conscious Compute asks how we can see the consequences and govern the exchange.</p>
         <div className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-3" aria-label="Visual cognition model">
-          <div className="border-l-4 border-violet bg-wash p-3">
+          <div className="rounded-xl border-l-4 border-violet bg-paper p-3 shadow-sm">
             <p className="text-[0.7rem] font-semibold tracking-wider text-violet uppercase">01 / See</p>
             <p className="mt-1 font-serif text-[1.05rem]">Make invisible costs visible.</p>
             <p className="mt-1 text-[0.8rem] text-mute">Published</p>
           </div>
-          <div className="border-l-4 border-violet bg-wash p-3">
+          <div className="rounded-xl border-l-4 border-violet bg-paper p-3 shadow-sm">
             <p className="text-[0.7rem] font-semibold tracking-wider text-violet uppercase">02 / Share</p>
             <p className="mt-1 font-serif text-[1.05rem]">Return value to those affected.</p>
             <p className="mt-1 text-[0.8rem] text-mute">Shared</p>
           </div>
-          <div className="border-l-4 border-violet bg-wash p-3">
+          <div className="rounded-xl border-l-4 border-violet bg-paper p-3 shadow-sm">
             <p className="text-[0.7rem] font-semibold tracking-wider text-violet uppercase">03 / Verify</p>
             <p className="mt-1 font-serif text-[1.05rem]">Prove promises became outcomes.</p>
             <p className="mt-1 text-[0.8rem] text-mute">Checked</p>
@@ -107,21 +130,8 @@ export default function Home() {
         </div>
       </section>
 
-      <figure className="my-6">
-        <Image
-          src="/image.svg"
-          width={1200}
-          height={820}
-          priority
-          className="block h-auto w-full border border-rule"
-          alt="A violet data hall at the center of a ring of eleven neighborhood houses. An orange square on each line marks the cost of connecting. A twelfth house outside the ring has a dashed outline and no line."
-        />
-        <figcaption className="mt-2 text-[0.85rem] text-mute">
-          The bargain, drawn. Eleven neighbors are connected and carry a cost. One is left out. Conscious compute is the discipline of counting all twelve.
-        </figcaption>
-      </figure>
-
-      <h2>Abstract</h2>
+      <article className="mx-auto max-w-184">
+      <h2 id="abstract">Abstract</h2>
       <p>This paper defines conscious compute as computing infrastructure whose operator publishes the cost it imposes on the surrounding community, shares a defined and enforceable portion of the value created, and submits both commitments to independent verification. It proposes a nine-indicator measurement protocol, built on existing standards and published research on energy, carbon and water, and describes three illustrative use cases in which the protocol could be applied: a county siting decision, an AI training run, and an enterprise procurement, with a tokenized cultural asset as an exploratory application. It traces the concept to the Zero Waste IT white paper of 2017 to 2018, to written use in August 2019, and to the exact phrase in a February 2023 domain registration. The protocol is a proposal. It has not yet been piloted, and the paper says plainly what would count as evidence against it.</p>
 
       <h2>1. The humane premise <SparkleIcon /></h2>
@@ -135,9 +145,11 @@ export default function Home() {
       <p>It is operational, since each clause can be audited. It is scale-free, applying to a hyperscale campus, a colocation cage, a model-training cluster, or a token whose value depends on a community&apos;s attention. And it is not a synonym for green computing. Green computing asks how much a workload consumes. Conscious compute asks who carries what remains and who receives what is made.</p>
 
       <h2>3. How it works: three tests</h2>
+      <div className="my-6 grid gap-4 md:grid-cols-3">
       <TestBox name="Published.">The operator discloses the cost of connecting before approval: energy and carbon, water, land, noise, and who pays for each, including grid upgrades and rate effects.</TestBox>
       <TestBox name="Shared.">A defined portion of upside is contractually directed to the affected community. Defined means a stated percentage or formula. Enforceable means a remedy exists if it is not paid.</TestBox>
       <TestBox name="Checked.">An independent party with no financial stake confirms that the published numbers are true and the shared portion was delivered, at a stated interval, with consequences for failure.</TestBox>
+      </div>
       <p>One test makes an operator transparent. Two make it generous. Three make it accountable. All three are required for the name, and until pilots validate the method, no project is awarded it.</p>
 
       <h2>4. Theoretical grounding</h2>
@@ -166,8 +178,13 @@ export default function Home() {
       <p>The protocol would be wrong if communities rate high-scoring operators no more fairly treated than low-scoring ones, or if operators can score well by gaming the choice of functional unit or verifier. Water and carbon figures vary by method, site and year, and the preprint cited here has not been confirmed as peer reviewed. Others use similar phrases, including sustainable computing and eco-conscious computing, in energy-efficiency contexts, and this paper claims a specific, testable meaning rather than those fields. Any claim to the phrase as a trademark is a separate matter for counsel, and nothing here is legal advice.</p>
       <p><AsterismIcon /> The cloud has neighbors. Conscious compute is the promise to act like it.</p>
 
-      <h2>8. Help test this framework</h2>
-      <p>We&apos;re seeking a small group of infrastructure operators, community representatives, buyers, and independent reviewers to help test this framework. Bring a project, challenge an assumption, or help design the first pilot.</p>
+      <section id="join-the-movement" className="my-12 rounded-3xl bg-violet px-5 py-6 text-white shadow-sm sm:px-8 sm:py-8">
+        <h2 className="mt-0 border-t-0 pt-0 text-white">8. Help test this framework</h2>
+        <p className="mb-0 text-white">We&apos;re seeking a small group of infrastructure operators, community representatives, buyers, and independent reviewers to help test this framework. Bring a project, challenge an assumption, or help design the first pilot.</p>
+        <a href="mailto:join@consciouscompute.org?subject=Conscious%20Compute%20pilot%20interest" className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 font-semibold text-violet no-underline shadow-sm hover:bg-wash focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
+          Email join@consciouscompute.org <span aria-hidden="true">→</span>
+        </a>
+      </section>
 
       <h2>9. Background and exploratory applications</h2>
       <p>The sections below are background to the framework, not part of it.</p>
@@ -196,6 +213,7 @@ export default function Home() {
           )}
         </p>
       ))}
+      </article>
     </main>
   );
 }
