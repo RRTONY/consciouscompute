@@ -25,7 +25,7 @@ What still has to happen before the site is promoted or opened to Google. Update
 ## Indexing: blocked on purpose
 
 - The "Temporary placement" notice and `noindex, nofollow` stay until the author says otherwise
-  (AGENTS.md section 2). On 2026-11-17 Sam asked to remove both; Tony replied "Do not remove the temporary".
+  (AGENTS.md section 2). In a team thread around the 2026-11-17 redesign, Sam asked to remove both; Tony later wrote "Do not remove the temporary".
 - Branch `seo/sitemap-canonical` adds `src/app/sitemap.ts` and a canonical URL, with notice and noindex
   kept. When noindex is lifted, change `src/app/layout.tsx` and `vercel.json` together.
 
