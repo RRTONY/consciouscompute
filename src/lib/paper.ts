@@ -65,6 +65,6 @@ export const REFERENCES: Reference[] = [
   { text: "Greenberg, T. (2018). Zero Waste IT: The Ride-Sharing Service of IT. White paper, Draft 2.1, January 11, 2018. Unpublished." },
 ];
 
-// null hides both "Join the movement" email links. Set it back to "join@consciouscompute.org" once that
-// address forwards to a monitored inbox (it was rejected by the mail server on 2026-11-18).
-export const CONTACT_EMAIL: string | null = null;
+// Both "Join the movement" email links use this; null hides them. join@ forwards via Namecheap
+// (verified accepting mail on 2026-11-18).
+export const CONTACT_EMAIL: string | null = "join@consciouscompute.org";

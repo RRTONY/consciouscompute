@@ -25,4 +25,4 @@ Background notes for any AI tool working on this repo. The **rules** live in [`/
 - [project_next16_loading_404_bug](project_next16_loading_404_bug.md): A folder-level loading.tsx silently breaks notFound()/redirect() status codes for nested dynamic routes
 - [project_conversion_2026-10](project_conversion_2026-10.md): How the static index.html became this Next.js app, and what was kept identical
 - [project_mcp_editor](project_mcp_editor.md): Editing the site through ChatGPT/Claude (MCP), change records in GitHub, no database, what is verified
-- [project_launch_status](project_launch_status.md): join@ inbox not set up (buttons hidden), Search Console not set up, page open to Google since 2026-11-18
+- [project_launch_status](project_launch_status.md): join@ inbox working, Search Console set up with sitemap, page open to Google since 2026-11-18
