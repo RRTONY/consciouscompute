@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowRightIcon, AsterismIcon, DiamondIcon, ReferenceMarkIcon, SparkleIcon, WavyArrowIcon } from "@/components/icons";
 import { CONTACT_EMAIL, LINEAGE, PROTOCOL, REFERENCES, TOKEN_CASE, USE_CASES, type UseCase } from "@/lib/paper";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const cell = "border-b border-rule px-2 py-2.5 text-left align-top";
 
@@ -71,10 +76,6 @@ function Note({ children }: { children: React.ReactNode }) {
 export default function Home() {
   return (
     <main className="mx-auto max-w-6xl pt-6 pb-16 font-sans pl-[max(16px,env(safe-area-inset-left))] pr-[max(16px,env(safe-area-inset-right))] sm:pt-8 sm:pb-20 sm:pl-[max(24px,env(safe-area-inset-left))] sm:pr-[max(24px,env(safe-area-inset-right))]">
-      <aside role="note" aria-label="Temporary placement" className="mb-8 rounded-2xl border border-rust bg-white px-4 py-4 text-[0.9rem] shadow-sm sm:mb-10 sm:px-6 sm:py-5">
-        <p className="mb-1 font-serif text-[1.3rem] font-bold text-rust sm:text-[1.5rem]">Temporary placement.</p>
-        This page presents an early working draft of Conscious Compute for discussion and critique. The framework, scoring, and examples are provisional. No projects have yet been independently assessed under it.
-      </aside>
       <header className="grid gap-6 md:grid-cols-2 md:items-center md:gap-10">
         <div className="max-w-xl">
       <p className="font-mono text-[0.8rem] font-semibold tracking-[0.12em] text-violet uppercase">

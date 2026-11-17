@@ -17,10 +17,10 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://consciouscompute.org"),
   title: "Conscious Compute",
   description:
     "A working paper defining conscious compute, with a measurement protocol, four use cases, and a referenced lineage from Zero Waste IT.",
-  robots: { index: false, follow: false },
 };
 
 export const viewport: Viewport = {
