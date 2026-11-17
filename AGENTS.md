@@ -69,6 +69,9 @@ Follow the patterns already in the codebase before inventing new ones. Specific 
 - Images: `<Image>` from `next/image`, never `<img>`, for anything user-visible. Static files go in
   `public/`. SVGs are served unoptimized automatically.
 - SVG icons inline, no icon library imports.
+- Analytics: one Google Tag Manager container (`GTM_ID` in `src/app/page.tsx`, paper page only, never on the sign-in page), loaded with
+  `next/script` after the page is interactive. Add or change tags (Google Analytics is one) inside Tag
+  Manager, not in code. The VCOS service account reads the Analytics data.
 
 **Styling (Tailwind CSS v4)**
 - Tailwind utility classes, not inline `style={{...}}`. Truly per-render values (e.g. an animation
@@ -280,7 +283,6 @@ database**: background in [`docs/ai/project_mcp_editor.md`](docs/ai/project_mcp_
 | `MCP_AUTH_SECRET` | Signs sign-in codes and tokens (`openssl rand -hex 32`). |
 | `MCP_PUBLIC_ORIGIN` | `https://consciouscompute.org`. The address the sign-in metadata advertises; must match the URL people add, or ChatGPT/Claude refuse to connect. |
 | `MCP_OAUTH_REDIRECT_HOSTS` | Optional extra hosts allowed to receive sign-in codes (comma separated). |
-| `NEXT_PUBLIC_GA_ID` | Google Analytics 4 measurement ID (`G-...`). Not secret. Empty = no analytics loaded. Read at build time, so redeploy after changing it. The VCOS service account has Viewer access to the property. |
 
 **Connecting**
 - **ChatGPT:** Settings → Apps & Connectors → Advanced → Developer mode → Create → URL

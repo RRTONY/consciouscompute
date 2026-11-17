@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Script from "next/script";
 import { ArrowRightIcon, AsterismIcon, DiamondIcon, ReferenceMarkIcon, SparkleIcon, WavyArrowIcon } from "@/components/icons";
 import { CONTACT_EMAIL, LINEAGE, PROTOCOL, REFERENCES, TOKEN_CASE, USE_CASES, type UseCase } from "@/lib/paper";
 
@@ -72,6 +73,10 @@ function UseCaseCard({ c }: { c: UseCase }) {
 function Note({ children }: { children: React.ReactNode }) {
   return <p className="text-[0.88rem] text-mute">{children}</p>;
 }
+
+// Google Tag Manager container; Google Analytics (G-S99QM9B5YB) and any other tags are managed inside it.
+// Paper page only, so tags never run on the team sign-in page.
+const GTM_ID = "GTM-PWZ8CG3J";
 
 export default function Home() {
   return (
@@ -219,6 +224,11 @@ export default function Home() {
         </p>
       ))}
       </article>
+      <Script id="gtm-init" strategy="afterInteractive">
+        {`window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });`}
+      </Script>
+      <Script src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`} strategy="afterInteractive" />
     </main>
   );
 }
