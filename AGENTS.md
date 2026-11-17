@@ -280,6 +280,7 @@ database**: background in [`docs/ai/project_mcp_editor.md`](docs/ai/project_mcp_
 | `MCP_AUTH_SECRET` | Signs sign-in codes and tokens (`openssl rand -hex 32`). |
 | `MCP_PUBLIC_ORIGIN` | `https://consciouscompute.org`. The address the sign-in metadata advertises; must match the URL people add, or ChatGPT/Claude refuse to connect. |
 | `MCP_OAUTH_REDIRECT_HOSTS` | Optional extra hosts allowed to receive sign-in codes (comma separated). |
+| `NEXT_PUBLIC_GA_ID` | Google Analytics 4 measurement ID (`G-...`). Not secret. Empty = no analytics loaded. Read at build time, so redeploy after changing it. The VCOS service account has Viewer access to the property. |
 
 **Connecting**
 - **ChatGPT:** Settings → Apps & Connectors → Advanced → Developer mode → Create → URL

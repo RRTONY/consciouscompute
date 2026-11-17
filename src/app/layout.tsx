@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, IBM_Plex_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -28,11 +29,26 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     // Browser extensions (Grammarly, password managers, dark mode) add attributes to <html>/<body> before React hydrates.
     <html lang="en" className={`${fraunces.variable} ${plexMono.variable}`} suppressHydrationWarning>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        {children}
+        {gaId && (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${gaId}');`}
+            </Script>
+          </>
+        )}
+      </body>
     </html>
   );
 }
