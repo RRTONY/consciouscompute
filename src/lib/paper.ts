@@ -64,3 +64,7 @@ export const REFERENCES: Reference[] = [
   { text: "Wheal, J., and Kotler, S. (2017). Stealing Fire: How Silicon Valley, the Navy SEALs, and Maverick Scientists Are Revolutionizing the Way We Live and Work. Dey Street Books." },
   { text: "Greenberg, T. (2018). Zero Waste IT: The Ride-Sharing Service of IT. White paper, Draft 2.1, January 11, 2018. Unpublished." },
 ];
+
+// null hides both "Join the movement" email links. Set it back to "join@consciouscompute.org" once that
+// address forwards to a monitored inbox (it was rejected by the mail server on 2026-11-18).
+export const CONTACT_EMAIL: string | null = null;

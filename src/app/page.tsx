@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowRightIcon, AsterismIcon, DiamondIcon, ReferenceMarkIcon, SparkleIcon, WavyArrowIcon } from "@/components/icons";
-import { LINEAGE, PROTOCOL, REFERENCES, TOKEN_CASE, USE_CASES, type UseCase } from "@/lib/paper";
+import { CONTACT_EMAIL, LINEAGE, PROTOCOL, REFERENCES, TOKEN_CASE, USE_CASES, type UseCase } from "@/lib/paper";
 
 const cell = "border-b border-rule px-2 py-2.5 text-left align-top";
 
@@ -85,9 +85,11 @@ export default function Home() {
         As AI reshapes civilization, who decides what progress means, who captures its value, who bears its costs, and who holds the system accountable?
       </p>
       <p className="font-mono text-[0.9rem] text-mute">Tony Greenberg · ImpactSoul · Draft for citation and critique</p>
-          <a href="mailto:join@consciouscompute.org?subject=Conscious%20Compute%20pilot%20interest" className="mt-5 inline-flex items-center gap-2 rounded-full bg-violet px-5 py-3 font-semibold text-white no-underline shadow-sm hover:bg-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet">
+          {CONTACT_EMAIL && (
+          <a href={`mailto:${CONTACT_EMAIL}?subject=Conscious%20Compute%20pilot%20interest`} className="mt-5 inline-flex items-center gap-2 rounded-full bg-violet px-5 py-3 font-semibold text-white no-underline shadow-sm hover:bg-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet">
             Join the movement <span aria-hidden="true">→</span>
           </a>
+          )}
         </div>
 
       
@@ -181,9 +183,11 @@ export default function Home() {
       <section id="join-the-movement" className="my-12 rounded-3xl bg-violet px-5 py-6 text-white shadow-sm sm:px-8 sm:py-8">
         <h2 className="mt-0 border-t-0 pt-0 text-white">8. Help test this framework</h2>
         <p className="mb-0 text-white">We&apos;re seeking a small group of infrastructure operators, community representatives, buyers, and independent reviewers to help test this framework. Bring a project, challenge an assumption, or help design the first pilot.</p>
-        <a href="mailto:join@consciouscompute.org?subject=Conscious%20Compute%20pilot%20interest" className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 font-semibold text-violet no-underline shadow-sm hover:bg-wash focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
-          Email join@consciouscompute.org <span aria-hidden="true">→</span>
+        {CONTACT_EMAIL && (
+        <a href={`mailto:${CONTACT_EMAIL}?subject=Conscious%20Compute%20pilot%20interest`} className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 font-semibold text-violet no-underline shadow-sm hover:bg-wash focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
+          Email {CONTACT_EMAIL} <span aria-hidden="true">→</span>
         </a>
+        )}
       </section>
 
       <h2>9. Background and exploratory applications</h2>
