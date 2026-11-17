@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowRightIcon, AsterismIcon, DiamondIcon, ReferenceMarkIcon, SparkleIcon, WavyArrowIcon } from "@/components/icons";
 import { LINEAGE, PROTOCOL, REFERENCES, TOKEN_CASE, USE_CASES, type UseCase } from "@/lib/paper";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const cell = "border-b border-rule px-2 py-2.5 text-left align-top";
 
