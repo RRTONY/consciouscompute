@@ -4,7 +4,7 @@
 const DENYLIST_PATTERNS: RegExp[] = [
   /^\.env(\..*)?$/i,
   /^package(-lock)?\.json$/i,
-  // Holds the site-wide noindex header the author asked to keep (AGENTS.md).
+  // Holds the X-Robots-Tag noindex for the sign-in and MCP routes only (AGENTS.md).
   /^vercel\.json$/i,
   /^\.mcp\.json$/i,
   /^\.github\//i,

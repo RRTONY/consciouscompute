@@ -166,7 +166,7 @@ const TOOLS: ToolDef[] = [
   {
     name: "check_code_quality",
     description:
-      "Check proposed file content against this site's house rules BEFORE writing it (design tokens instead of hex colors, next/image, Tailwind instead of inline styles, mobile first, no new libraries, the noindex setting and the Temporary placement notice kept). Fix anything it flags first. Type check, lint and build run automatically on the change afterwards.",
+      "Check proposed file content against this site's house rules BEFORE writing it (design tokens instead of hex colors, next/image, Tailwind instead of inline styles, mobile first, no new libraries, and no noindex or Temporary placement notice brought back: both were removed with approval on 2026-11-18). Fix anything it flags first. Type check, lint and build run automatically on the change afterwards.",
     input_schema: {
       type: "object",
       properties: {
@@ -371,8 +371,9 @@ list_pending_changes with that change_id to show the review card. The person the
 discards THAT change only.
 
 Key rules (details in AGENTS.md): plain, short, jargon-free replies, no em dashes; the paper's wording
-belongs to the author and every wording change needs their sign-off before it goes live; keep the
-"Temporary placement" notice and noindex/nofollow; Tailwind tokens, mobile first, inline SVG icons;
+belongs to the author and every wording change needs their sign-off before it goes live; the page is
+open to Google (the "Temporary placement" notice and noindex were removed with approval on 2026-11-18;
+don't bring either back without a clear yes); Tailwind tokens, mobile first, inline SVG icons;
 confirm with the person before publish_changes; end every reply that did work with the Status Report.`;
 
 const WAIT_BUDGET_MS = 20_000;

@@ -31,12 +31,13 @@ const PATTERN_CHECKS: Array<{ test: (content: string, filePath: string) => boole
     message: "Desktop-first max-*: variant found. Styles are mobile first: write the phone style unprefixed and add sm:/md: for larger screens.",
   },
   {
-    test: (c, f) => f === "src/app/layout.tsx" && !/index:\s*false/.test(c),
-    message: "The noindex setting in layout.tsx is missing. The author asked to keep noindex/nofollow.",
+    // The page has been open to Google since 2026-11-18 (AGENTS.md). Flag noindex coming back.
+    test: (c, f) => f === "src/app/layout.tsx" && /index:\s*false/.test(c),
+    message: "noindex found in layout.tsx. The page is open to Google since 2026-11-18 (removed with approval); don't block indexing again without a clear yes.",
   },
   {
-    test: (c, f) => f === "src/app/page.tsx" && !/Temporary placement/.test(c),
-    message: "The \"Temporary placement\" notice is missing from the page. The author asked to keep it.",
+    test: (c, f) => f === "src/app/page.tsx" && /Temporary placement/.test(c),
+    message: "The \"Temporary placement\" notice was removed with approval on 2026-11-18; don't bring it back without a clear yes.",
   },
 ];
 
